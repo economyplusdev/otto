@@ -1,9 +1,23 @@
+local modem = peripheral.find("modem")
+if not modem then
+  print("Error: No modem found! Cannot open rednet.")
+  error("No modem found!")
+end
+
 rednet.open("back")
+print("Connected to rednet")
+
 local monitor = peripheral.find("monitor")
+if not monitor then
+  print("Error: Monitor not found! Exiting.")
+  error("Monitor not found!")
+end
+
 monitor.clear()
 monitor.setCursorPos(1, 1)
 monitor.setTextColor(colors.green)
 monitor.write("CNC: Is now online")
+print("Connected to monitor")
 
 while true do
   local sender, message, protocol = rednet.receive()
