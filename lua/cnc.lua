@@ -19,6 +19,14 @@ monitor.setTextColor(colors.green)
 monitor.write("CNC: Is now online")
 print("Connected to monitor")
 
+local speaker = peripheral.find("speaker")
+if not speaker then
+  print("Error: Speaker not found! Exiting.")
+  error("Speaker not found!")
+end
+print("Connected to speaker")
+
+
 while true do
   local sender, message, protocol = rednet.receive()
   print("Message from turtle: " .. message)
